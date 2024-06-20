@@ -1,0 +1,12 @@
+@import "../components/form-authorization";
+
+.page-autohorization {
+    height: 100%;
+    &-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $bg-color;
+    }
+}
