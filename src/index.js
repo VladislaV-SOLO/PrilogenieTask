@@ -1,7 +1,12 @@
+
 import { PageAuthorization } from "./components/page-authorization.component.js";
+import { Validator } from "./core/validator.js";
 //для добавления квадрата -- Задание(чтобы удалить по клику)
 // import { Component } from "./core/component.js";
 
+Validator.required('');
+Validator.isEmailValid('    vervremail@.ru   ');
+console.log(Validator.isPasswordValid(''));
 
 const component1 = new PageAuthorization('login')
 
