@@ -15,6 +15,11 @@ init() {
         password: [Validator.required] // [Validator.password]
     })
 }
+
+    onHide() {
+        this.form.clear()
+    }
+
 }
 
 
