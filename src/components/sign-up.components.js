@@ -1,6 +1,8 @@
 import { Component } from "../core/component.js";
 import { Form } from "../core/form.js";
+import { Storage } from "../core/storage.js";
 import { Validator } from "../core/validator.js";
+// import { onSubmitHandler } from "./onSubmitHandler.js";
 
 
 
@@ -24,10 +26,16 @@ export class SignUpComponent extends Component {
 
 }
 
-
 function onSubmitHandler(event) {
     event.preventDefault()
 
-    console.log(this.form.value());
-    console.log(this.form.isValid());
+    if(this.form.isValid()) {
+        const formData = {
+            id: new Date().getTime(),
+            ...this.form.value(),
+        }
+        Storage.createNewUser(formData)
+        //очищаем форму после создания пользователя
+        this.form.clear()
+    }
 }

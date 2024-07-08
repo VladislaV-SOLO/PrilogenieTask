@@ -9,13 +9,16 @@ export class Component {
 
     onHide() {}
 
+    onShow() {}
+
     hide() {
         this.componet.classList.add('hide')
         this.onHide()
     }
 
-    show() {
+    show(e) {
         this.componet.classList.remove('hide')
+        this.onShow(e)
     }
 
 }

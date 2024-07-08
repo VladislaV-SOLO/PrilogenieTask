@@ -39,7 +39,7 @@ export class Form {
     clear() {
         Object.keys(this.controls).forEach(field => {
             this.form[field].value = ''
-            clearNoticeError(input)
+            // clearNoticeError(input)
         })
     }
 

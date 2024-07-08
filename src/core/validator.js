@@ -1,11 +1,11 @@
 export class  Validator {
     static required(str = '') {
-        console.log('requared', str);
+        // console.log('requared', str);
         return str && str.trim()
     }
 
     static isEmailValid(value = '') {
-        console.log(value);
+        // console.log(value);
 
         const arrayFromStr = value.trim().split('')
 
