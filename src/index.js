@@ -14,7 +14,7 @@ const loginPage = new PageAuthorization('login')
 
 export const notification = new Notification('notification')
 
-console.log(notification);
+// console.log(notification);
 
 
 
