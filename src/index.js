@@ -4,7 +4,6 @@ import { Notification } from "./components/modals/notification.component.js";
 
 //для добавления квадрата -- Задание(чтобы удалить по клику)
 // import { Component } from "./core/component.js";
-
 // Validator.required('');
 // Validator.isEmailValid('    vervremail@.ru   ');
 // console.log(Validator.isPasswordValid(''));
@@ -18,6 +17,31 @@ export const notification = new Notification('notification')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// добавление квадрата -- Задание
+// добавление квадрата -- Задание
+// добавление квадрата -- Задание
 // добавление квадрата -- Задание
 // class CreateComponent extends Component {
 

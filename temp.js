@@ -80,8 +80,6 @@ class Book {
     }
 }
 
-const book1 = new Book('1984', 'George Learn', '1234567')
-const book2 = new Book('Hello world', 'Afte harn', '7654321')
 
 // console.log(book1);
 // console.log(book2);
@@ -163,18 +161,32 @@ class Librarian extends User {
     }
     addBook(book) {
         this.library.books.push(book)
+        return `${book.title} has been to the library`
     }
 
     removeBook(book) {
-
+        const index = this.library.books.indexOf(book)
+        if (index !== -1) {
+            this.library.books.splice(index, 1)
+            return `${book.title} has been removed from the library`
+        } else {
+            return `${book.title} is not in the library`
+        }
     }
 
     lendBook(book, member) {
-
+        if (this.library.books.includes(book) && book.available) {
+            member.borrowBook(book)
+            return `${book.title} has been lent to ${member.name}`
+        } else {
+            return `${book.title} is unavailable or not in the library`
+        }
     }
 
     receiveBook(book) {
+        book.returnBook()
 
+        return `${book.title} has been received back into the library`
     }
 }
 
@@ -188,18 +200,50 @@ class Library {
     }
 
     registerMember(member) {
-
+        this.members.push(member)
+        return `${member.name} has been registred as a member of ${this.name}`
     }
 
     unregisterMember(member) {
-
+        const index = this.members.indexOf(member)
+        if (index !== -1) {
+            this.members.splice(index, 1)
+            return `${member.name} has been unregistred from ${this.name}`
+        } else {
+            return `${member.name} is not a member of library`
+        }
     }
 
     findBookByTitle(title) {
-
+        return this.books.find(book => book.title === title)
     }
 
-    findBookByISNB() {
-
+    findBookByISNB(isbn) {
+        return this.books.find(book => book.isbn === isbn)
     }
 }
+
+const library = new Library('Vitebsk library')
+console.log(library);
+const librarian = new Librarian('Nick', 'NickId01', library)
+console.log(librarian);
+
+const member = new Member('Alice', 'mem007')
+console.log(member);
+
+const book1 = new Book('1984', 'George Orwell', '1234')
+const book2 = new Book('Brave New World', 'Aldous', '7654')
+
+console.log(book1);
+console.log(book2);
+
+console.log(librarian.addBook(book1));
+console.log(librarian.addBook(book2));
+
+console.log(library.registerMember(member));
+
+console.log(member.borrowBook(book1)); // available = true
+console.log(member.borrowBook(book1)); // available = false, книга уже занята
+
+console.log(librarian.lendBook(book2, member));
+console.log(librarian.receiveBook(book2));
