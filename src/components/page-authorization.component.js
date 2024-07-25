@@ -9,8 +9,8 @@ export class PageAuthorization extends Component {
     }
 
     init() {
-        this.signIn = new SignInComponent('sign-in')
-        this.signUp = new SignUpComponent('sign-up')
+        this.signIn = new SignInComponent('sign-in', this.componet)
+        this.signUp = new SignUpComponent('sign-up', this.componet)
         
         this.links = this.componet.querySelectorAll('.form__link')
         

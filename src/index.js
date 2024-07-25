@@ -1,6 +1,8 @@
 
 import { PageAuthorization } from "./components/page-authorization.component.js";
 import { Notification } from "./components/modals/notification.component.js";
+import{ PageContent } from "./components/page-content.component.js"
+import { FormCreatePostModal } from "./components/modals/create-form.component.js";
 
 //для добавления квадрата -- Задание(чтобы удалить по клику)
 // import { Component } from "./core/component.js";
@@ -10,10 +12,19 @@ import { Notification } from "./components/modals/notification.component.js";
 
 
 const loginPage = new PageAuthorization('login')
+export const pageContent = new PageContent('page-content', loginPage)
+
+export const formCreatePostModal = new FormCreatePostModal('create')
+
 
 export const notification = new Notification('notification')
 
-// console.log(notification);
+console.log(pageContent);
+
+if (JSON.parse(localStorage.getItem('selectedUserId'))) {
+    loginPage.hide()
+    pageContent.show()
+}
 
 
 

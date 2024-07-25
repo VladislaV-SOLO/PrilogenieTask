@@ -22,23 +22,56 @@ export class Storage {
                 return
             }
             //иначе записываем в localStorage уже существующих пользователей + добавляем новых
-            const existUsers = JSON.parse(localStorage.getItem('users'))
+            const existUsers = getAllUsersFromLocalStorage()
             localStorage.setItem('users', JSON.stringify([...existUsers, userData]))
         }
 
         //вызов уведомления о создании пользователя
         notification.show('Account is created')
+        return userData.id;
 
         // const value = JSON.parse(localStorage.getItem('users'))
 
         // console.log(value);
     }
+
+    static enterTodoList(login) {
+        const existUsers = getAllUsersFromLocalStorage()
+        const user = existUsers.find(({name, password}) => {
+            return name === login.name && password === login.password
+        })
+        if (user) {
+            notification.show('Successfull authorization')
+            return user.id
+        } else {
+            notification.show('Incorrect login or password')
+        }
+    }
+
+    static getUserData() {
+        return findUserData()
+    }
+
+    static createPost(postData) {
+        const existUsers = getAllUsersFromLocalStorage()
+        const currentUser = findUserData()
+        const updateUser = {
+            ...currentUser,
+            todoList: [...currentUser.todoList, postData]
+        }
+        const indexCurrentUser = existUsers.findIndex((user) => user.id === currentUser.id)
+    
+        const updateUsersArray = [...existUsers.slice(0, indexCurrentUser), updateUser, ...existUsers.slice(indexCurrentUser + 1)]
+        localStorage.setItem('users', JSON.stringify(updateUsersArray))
+        notification.show('Post created')
+    }
+
 }
 
 function checkUserExist(userData) {
     let isUser = false
     // получаем уже существующих пользователей и массив пользователей
-    const existUsers = JSON.parse(localStorage.getItem('users'))
+    const existUsers = getAllUsersFromLocalStorage()
     // в массиве делаем проверку на соответсвие значений userName и email
     existUsers.forEach(({ name, email}) => {
 
@@ -52,3 +85,18 @@ function checkUserExist(userData) {
     return isUser
 }
 
+function getAllUsersFromLocalStorage() {
+    const existUsers = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
+    return existUsers
+}
+
+
+function findUserData() {
+    const userId = JSON.parse(localStorage.getItem('selectedUserId'))
+    if (userId) {
+        const users = getAllUsersFromLocalStorage()
+        return users.find((user) => {
+            return user.id === userId
+        })
+    }
+}
