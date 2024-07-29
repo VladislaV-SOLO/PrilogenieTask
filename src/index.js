@@ -3,6 +3,7 @@ import { PageAuthorization } from "./components/page-authorization.component.js"
 import { Notification } from "./components/modals/notification.component.js";
 import{ PageContent } from "./components/page-content.component.js"
 import { FormCreatePostModal } from "./components/modals/create-form.component.js";
+import { PostInfoModal } from "./components/modals/todo-info.components.js";
 
 //для добавления квадрата -- Задание(чтобы удалить по клику)
 // import { Component } from "./core/component.js";
@@ -11,13 +12,15 @@ import { FormCreatePostModal } from "./components/modals/create-form.component.j
 // console.log(Validator.isPasswordValid(''));
 
 
-const loginPage = new PageAuthorization('login')
-export const pageContent = new PageContent('page-content', loginPage)
+const loginPage = new PageAuthorization('login');
+export const pageContent = new PageContent('page-content', loginPage);
 
-export const formCreatePostModal = new FormCreatePostModal('create')
+export const formCreatePostModal = new FormCreatePostModal('create');
 
+export const postInfoModal = new PostInfoModal("info");
+console.log(postInfoModal);
 
-export const notification = new Notification('notification')
+export const notification = new Notification('notification');
 
 console.log(pageContent);
 
@@ -25,14 +28,6 @@ if (JSON.parse(localStorage.getItem('selectedUserId'))) {
     loginPage.hide()
     pageContent.show()
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -84,3 +79,27 @@ if (JSON.parse(localStorage.getItem('selectedUserId'))) {
 
 // console.log(square);
 // console.log(justObj);
+
+
+
+
+
+// задача обЪект с одинаковыми занчениями(empty) найти их
+// const wareStore = {
+//     jackets: 5,
+//     hats: 'empty',
+//     socks: 'empty',
+//     pants: 15,
+//     parer: true,
+//     mixers: 14,
+//     date: new Date(),
+//     cookers: 'empty'
+// }
+
+// function printReport(obj) {
+//         const result =  Object.entries(obj)// Object.entries возвращает массив wareStore,
+//         .filter(([key, value]) => value  === 'empty')// дальше фильтр по отдельности создает массив каждого значения
+//         .reduce((acc, [key, value]) => `${acc} ${key},`, ''); // в ретурне empty она нам даёт три обекта со значением empty, reduce нам возвращает только имена hats socks cookers
+//         return result.trim().length ? `We need this items: ${result.slice(0, -1)}!` : 'Everything fine'  // We need this items:  hats, socks, cookers!
+// }
+// console.log(printReport(wareStore)); 
