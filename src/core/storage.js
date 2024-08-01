@@ -70,7 +70,6 @@ export class Storage {
     }
 
     static removeTodo(todoId) {
-        const existUsers = getAllUsersFromLocalStorage()
         const currentUser = findUserData()
         const upDateUserPosts = currentUser.todoList.filter((todo) => Number(todo.id) !== Number(todoId))
         console.log(upDateUserPosts);
@@ -79,6 +78,18 @@ export class Storage {
             todoList: upDateUserPosts
         }
         updateLocalStorage(updateUser)
+    }
+
+    static editPost(todoId, formData) {
+        const currentUser = findUserData()
+        const indexEditablePost = currentUser.todoList.findIndex((todo) =>  Number(todo.id) === Number(todoId))
+        const updateUser = {
+            ...currentUser,
+            todoList: [...currentUser.todoList.slice(0, indexEditablePost), formData, ...currentUser.todoList.slice(0, indexEditablePost + 1), 
+            ],
+        };
+        updateLocalStorage(updateUser);
+        notification.show("Post Changed");
     }
 
 }

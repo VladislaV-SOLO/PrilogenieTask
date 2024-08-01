@@ -15,12 +15,13 @@ export class PostInfoModal extends Component {
         }
 
     onShow(todoId) {
-        const htmlInfo = renderPostInfo()
+        this.componet.innerHTML = ''
+        const htmlInfo = renderPostInfo(todoId)
         this.componet.insertAdjacentHTML('afterbegin', htmlInfo)
     }
 
     onHide() {
-
+        this.componet.innerHTML = ''
     }
 }
 

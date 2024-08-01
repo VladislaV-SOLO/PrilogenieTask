@@ -1,8 +1,8 @@
 import { Component } from "../core/component.js";
 import { Storage } from "../core/storage.js";
-import { formCreatePostModal } from "../index.js";
+import { confirmInfoModal, formCreatePostModal, formEditPostModal } from "../index.js";
 import { renderPosts } from "../template/render-posts.js";
-import { PostInfoModal } from "./modals/todo-info.components.js";
+
 
 export class PageContent extends Component {
     constructor(id, pageAuthorization) {
@@ -48,7 +48,7 @@ function onTodoHandler(e) {
     console.log(todoId); 
 
     if (e.target.classList.contains('todos__item')) {
-        PostInfoModal.show(todoId)
+        postInfoModal.show(todoId)
     }
 
     if (e.target.classList.contains('todos__item-status')) {
@@ -56,8 +56,9 @@ function onTodoHandler(e) {
     }
     if (e.target.classList.contains('todos__item-edit')) {
         console.log('todos__item-edit');
+        formEditPostModal.show(todoId)
     }
     if (e.target.classList.contains('todos__item-remove')) {
-        Storage.removeTodo(todoId)
+        confirmInfoModal.show(todoId)
     }
 }

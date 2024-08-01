@@ -4,6 +4,8 @@ import { Notification } from "./components/modals/notification.component.js";
 import{ PageContent } from "./components/page-content.component.js"
 import { FormCreatePostModal } from "./components/modals/create-form.component.js";
 import { PostInfoModal } from "./components/modals/todo-info.components.js";
+import { ConfirmActionModal } from "./components/modals/confirm-action.components.js";
+
 
 //для добавления квадрата -- Задание(чтобы удалить по клику)
 // import { Component } from "./core/component.js";
@@ -14,12 +16,11 @@ import { PostInfoModal } from "./components/modals/todo-info.components.js";
 
 const loginPage = new PageAuthorization('login');
 export const pageContent = new PageContent('page-content', loginPage);
-
 export const formCreatePostModal = new FormCreatePostModal('create');
-
 export const postInfoModal = new PostInfoModal("info");
 console.log(postInfoModal);
-
+export const confirmInfoModal = new ConfirmActionModal("confirm");
+export const formEditPostModal = new FormCreatePostModal("edit");
 export const notification = new Notification('notification');
 
 console.log(pageContent);
@@ -30,17 +31,39 @@ if (JSON.parse(localStorage.getItem('selectedUserId'))) {
 }
 
 
+// 
+// задача объединить два массива(3 способа) -- {login: 'user', email: 'myEmail@mail.ru', gender: 'male or female'}
+// 
+// const keys = ['login', 'email', 'gender']
+// const values = ['user', 'myEmail@mail.ru', 'male or female']
+
+// function task(key, value) {
 
 
+// 1 способ решения
+// let clone = key.map((el, index) => {
+//     return [el, value[index]]
+// });
+// return Object.fromEntries(clone)
 
 
+// 2 способ решения 
+    // return key.reduce((acc, item, index) => {
+    //     acc[item] = value[index]
+    //     return acc
+    // }, {});
 
 
+    // 3 способ решения
+    // const result = {}
 
+    // key.forEach((el, index, arr) => {
+    //     result[el] = value[index]
+    // });
+    // return result
 
-
-
-
+// }
+// console.log(task(keys, values))  \\ {login: 'user', email: 'myEmail@mail.ru', gender: 'male or female'}
 
 
 
